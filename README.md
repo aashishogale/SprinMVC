@@ -1,1 +1,1 @@
-# SprinMVC
+# SpringMVC
