@@ -19,7 +19,7 @@
 
 <c:url var="addAction" value="/user/add" ></c:url>
 
-<form:form action="${addAction}" commandName="user">
+<form:form action="${addAction}" modelAttribute="user">
 <table>
 	<c:if test="${!empty user.name}">
 	<tr>

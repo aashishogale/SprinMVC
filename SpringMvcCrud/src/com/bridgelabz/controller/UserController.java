@@ -29,8 +29,8 @@ public class UserController {
 	return	"user";
 	}
 	
-	@RequestMapping(value="user/add",method=RequestMethod.POST)
-	public String addUser(@ModelAttribute("user")User user){
+	@RequestMapping(value="/user/add",method=RequestMethod.POST)
+	public String addUser(@ModelAttribute("user") User user){
 		if(user.getId()==0){
 			this.userservice.addUser(user);
 			
