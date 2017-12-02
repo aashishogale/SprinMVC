@@ -17,13 +17,13 @@ public class UserServiceImpl implements UserService {
 		
 		userDao.register(user);
 	}
-    public User login(String userName, String password){
-		return userDao.login(userName, password);
-	}
+ 
 
 	public User validateUser(Login login) {
 		// TODO Auto-generated method stub
 		return userDao.validateUser(login);
 	}
+
+
 
 }

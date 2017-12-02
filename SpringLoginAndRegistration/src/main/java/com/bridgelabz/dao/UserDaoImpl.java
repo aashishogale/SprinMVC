@@ -26,22 +26,19 @@ public class UserDaoImpl implements UserDao {
 	    user.getLname(), user.getEmail() ,user.getLocation()});
 	    }
 	    public User validateUser(Login login) {
-	    String sql = "select * from register1 where name='" + login.getFname() + "' and password='" + login.getPassword()
+	    String sql = "select * from register1 where email='" + login.getEmail() + "' and password='" + login.getPassword()
 	    + "'";
 	    List<User> users = jdbcTemplate.query(sql, new UserMapper());
 	    return users.size() > 0 ? users.get(0) : null;
 	    }
-		public User login(String UserName, String Password) {
-			// TODO Auto-generated method stub
-			return null;
-		}
+	
 	  }
 	  class UserMapper implements RowMapper<User> {
 	  public User mapRow(ResultSet rs, int arg1) throws SQLException {
 	    User user = new User();
 	    
 	    user.setPassword(rs.getString("password"));
-	    user.setFname(rs.getString("firstname"));
+	    user.setFname(rs.getString("name"));
 	    user.setLname(rs.getString("lastname"));
 	    user.setEmail(rs.getString("email"));
 	    user.setLocation(rs.getString("location"));
