@@ -21,7 +21,7 @@ href="css/register2.css" />
 </head>
 
 <body >
-	<form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
+	<form:form id="regForm" modelAttribute="student" action="registerProcess" method="post">
 		<img  alt="google" class="google"> 
 		<a href="login"><input
 			type="button" value="Sign in"></a>
@@ -31,8 +31,8 @@ href="css/register2.css" />
 			<div class="container">
 				<div class="name">
 					<p class="heading">Name</p>
-					<form:input type="text" placeholder="First" id="fname" name="fname" path="fname"/>
-					<form:input type="text" placeholder="Last" id="lname" path="lname"/>
+					<form:input type="text" placeholder="First" id="fname" name="name" path="fname"/>
+					<input type="text" placeholder="Last" id="lname" />
 					<p id="pname"></p>
 
 				</div>
@@ -79,7 +79,7 @@ href="css/register2.css" />
 				</div>
 				<div Class="space">
 					<p class="heading">Location</p>
-					<form:select name="location" path="location">
+					<select name="location">
 						<option value=""></option>
 						<option value="India">India</option>
 						<option value="China">China</option>
@@ -88,7 +88,7 @@ href="css/register2.css" />
 						<option value="Germany">Germany</option>
 						<option value="Hong-Kong">Hong-Kong</option>
 						<option value="Uk">UK</option>
-					</form:select>
+					<select>
 				</div>
 				<div>
 					<input type="submit" value="Enter" class="button">
