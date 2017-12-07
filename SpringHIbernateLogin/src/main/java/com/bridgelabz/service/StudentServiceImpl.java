@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.bridgelabz.dao.StudentDao;
 import com.bridgelabz.model.Student;
 
-public class StudentServiceImpl {
+public class StudentServiceImpl  implements StudentService {
 	@Autowired
 	StudentDao studentdao;
 
@@ -14,7 +14,7 @@ public class StudentServiceImpl {
 		studentdao.register(student);
 	}
 
-	public Student validateUser(Student student) {
+	public boolean validateUser(Student student) {
 		// TODO Auto-generated method stub
 		return studentdao.validateUser(student);
 	}

@@ -9,7 +9,7 @@
 </bean>
 
   <bean id="Manager" class="com.bridgelabz.model.Manager">
-    <constructor-arg ref="Employee">
+    <constructor-arg  index='0' ref="Employee">
   </constructor-arg>
    </bean>
    

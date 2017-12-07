@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bridgelabz.model.Student;
 
-public class StudentDaoImpl {
+public class StudentDaoImpl implements StudentDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -19,7 +19,7 @@ public class StudentDaoImpl {
 		Session session = sessionFactory.openSession();
 
 		session.beginTransaction();
-		;
+		
 		session.save(student);
 		System.out.println("Inserted Successfully");
 		session.getTransaction().commit();
@@ -28,8 +28,11 @@ public class StudentDaoImpl {
 	}
 	
 
-	public boolean checkUser(String email, String password) {
 	
+
+
+	@Override
+	public boolean validateUser(Student student) {
 		// getting session object from session factory
 		Session session = sessionFactory.openSession();
 		// getting transaction object from session object
@@ -37,8 +40,8 @@ public class StudentDaoImpl {
 		Query<Student> query = session.createQuery("from Student");
 		List<Student> users = query.getResultList();
 
-		for (Student student : users) {
-		if(student.getName().equals(email)&&student.getPassword().equals(password)){
+		for (Student students : users) {
+		if(student.getEmail().equals(students.getEmail())&&student.getPassword().equals(students.getPassword())){
 			return true;
 		}
 		
@@ -48,6 +51,8 @@ public class StudentDaoImpl {
 		session.getTransaction().commit();
 		session.close();
 		return false;
+		// TODO Auto-generated method stub
+		
 	}
 
 }

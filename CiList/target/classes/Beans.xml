@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+   
+ 
+<bean id="student" class="com.Student">  
+<constructor-arg index ="0" value="12"></constructor-arg>  
+<constructor-arg index="1" value="aashish"></constructor-arg>  
+<constructor-arg index="2">  
+<list>  
+<value>Java </value>  
+<value>c</value>  
+<value>c++</value>  
+</list>  
+</constructor-arg>  
+<constructor-arg index="3">  
+<list>  
+<ref bean="subject1"></ref>
+<ref bean="subject2"></ref> 
+</list>  
+</constructor-arg> 
+</bean> 
+   <bean id="subject1" class="com.Subjects">  
+<constructor-arg value="10"></constructor-arg>  
+<constructor-arg value="english"></constructor-arg>  
+  
+</bean>  
+  
+<bean id="subject2" class="com.Subjects">  
+<constructor-arg value="20"></constructor-arg>  
+<constructor-arg value="maths"></constructor-arg>  
+ 
+</bean>
+      
+
+   </beans>

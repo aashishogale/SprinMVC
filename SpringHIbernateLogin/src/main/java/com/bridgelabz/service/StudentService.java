@@ -7,6 +7,6 @@ import com.bridgelabz.model.Student;
 @Service
 public interface StudentService {
 	void register(Student student);
-	Student validateUser(Student student);
+	boolean validateUser(Student student);
 
 }

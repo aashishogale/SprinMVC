@@ -6,7 +6,7 @@ import com.bridgelabz.model.Student;
 
 public interface StudentDao {
 	void register(Student student);
-	Student validateUser(Student student);
+    boolean validateUser(Student student);
 	
 
 }

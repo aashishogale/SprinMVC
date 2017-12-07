@@ -31,7 +31,7 @@ href="css/register2.css" />
 			<div class="container">
 				<div class="name">
 					<p class="heading">Name</p>
-					<form:input type="text" placeholder="First" id="fname" name="name" path="fname"/>
+					<form:input type="text" placeholder="First" id="fname" name="name" path="name"/>
 					<input type="text" placeholder="Last" id="lname" />
 					<p id="pname"></p>
 
@@ -88,7 +88,7 @@ href="css/register2.css" />
 						<option value="Germany">Germany</option>
 						<option value="Hong-Kong">Hong-Kong</option>
 						<option value="Uk">UK</option>
-					<select>
+					</select>
 				</div>
 				<div>
 					<input type="submit" value="Enter" class="button">
