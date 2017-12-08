@@ -1,12 +1,23 @@
 package com.bridgelabz.model;
 
+/**
+ * 
+ * @author bridgelabz
+ *
+ */
 public class Manager {
-private Employee employee;
-public Manager(Employee employee){
-	this.employee=employee;
-}
+	private Employee employee;
 
-public void print(){
-	System.out.print(employee.getName());
-}
+	public Manager() {}//
+
+	public Manager(Employee employee) {
+		this.employee = employee;
+	}
+
+	/**
+	 * 
+	 */
+	public void print() {
+		System.out.print(employee.getName());
+	}
 }

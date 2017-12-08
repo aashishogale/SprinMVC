@@ -2,6 +2,7 @@ package com.bridgelabz.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -9,42 +10,66 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bridgelabz.model.Login;
 import com.bridgelabz.model.User;
 
+/**
+ * @author aashish
+ *
+ *
+ */
+
 @Repository
 public class UserDaoImpl implements UserDao {
 	@Autowired
-	  DataSource datasource;
-	  @Autowired
-	  JdbcTemplate jdbcTemplate;
-	  public void register(User user) {
-	    String sql = "insert into register1(name,password,lastname,email,location) values(?,?,?,?,?)";
-	    jdbcTemplate.update(sql, new Object[] { user.getFname(), user.getPassword(), 
-	    user.getLname(), user.getEmail() ,user.getLocation()});
-	    }
-	    public User validateUser(Login login) {
-	    String sql = "select * from register1 where email='" + login.getEmail() + "' and password='" + login.getPassword()
-	    + "'";
-	    List<User> users = jdbcTemplate.query(sql, new UserMapper());
-	    return users.size() > 0 ? users.get(0) : null;
-	    }
-	
-	  }
-	  class UserMapper implements RowMapper<User> {
-	  public User mapRow(ResultSet rs, int arg1) throws SQLException {
-	    User user = new User();
-	    
-	    user.setPassword(rs.getString("password"));
-	    user.setFname(rs.getString("name"));
-	    user.setLname(rs.getString("lastname"));
-	    user.setEmail(rs.getString("email"));
-	    user.setLocation(rs.getString("location"));
-	 
-	    return user;
-	  }
+	DataSource datasource;
+	@Autowired
+	JdbcTemplate jdbcTemplate;
+	@Autowired
+	 BCryptPasswordEncoder encryptor;
 
+	@Transactional
+	public void register(User user) {
+		String sql = "insert into register1(name,password,lastname,email,location) values(?,?,?,?,?)";
+
+		String password = encryptor.encode(user.getPassword());
+		jdbcTemplate.update(sql,
+				new Object[] { user.getFname(), password, user.getLname(), user.getEmail(), user.getLocation() });
+	}
+	@Transactional
+	public User validateUser(Login login) {
+
+		String sql = "select * from register1";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		Iterator<User> itr = users.iterator();
+		while (itr.hasNext()) {
+			User user = itr.next();
+			if (user.getEmail().equals(login.getEmail())
+					&& encryptor.matches(login.getPassword(), user.getPassword())) {
+				return user;
+			}
+
+		}
+		return null;
+	}
+
+}
+
+class UserMapper implements RowMapper<User> {
+	public User mapRow(ResultSet rs, int arg1) throws SQLException {
+		User user = new User();
+
+		user.setPassword(rs.getString("password"));
+		user.setFname(rs.getString("name"));
+		user.setLname(rs.getString("lastname"));
+		user.setEmail(rs.getString("email"));
+		user.setLocation(rs.getString("location"));
+
+		return user;
+	}
 
 }
