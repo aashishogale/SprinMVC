@@ -2,6 +2,7 @@ package com.bridgelabz.model;
 
 /**
  * @author aashish
+ * Login model for validating information
  *
  */
 public class Login {

@@ -7,6 +7,10 @@ import com.bridgelabz.dao.UserDao;
 import com.bridgelabz.model.Login;
 import com.bridgelabz.model.User;
 
+/**
+ * @author aashish
+ * implementing the userservice methods
+ */
 @Service
 public class UserServiceImpl implements UserService {
 

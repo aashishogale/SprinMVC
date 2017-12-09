@@ -1,9 +1,8 @@
 package com.bridgelabz.controller;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,30 +21,35 @@ import com.bridgelabz.service.UserService;
 @Controller
 public class RegisterController {
 	@Autowired
-	  public UserService userService;
-	  /**
+	public UserService userService;
+
+	/**
 	 * @param request
 	 * @param response
 	 * @return mav -register page
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	  public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
-	    ModelAndView mav = new ModelAndView("register");
-	    mav.addObject("user", new User());
-	    return mav;
-	  }
-	  /**
+	public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("register");
+		mav.addObject("user", new User());
+		return mav;
+	}
+
+	/**
 	 * @param request
 	 * @param response
 	 * @param user
 	 * @return got to login page
 	 */
 	@RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
-	  public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
-			  @ModelAttribute("user") User user) {
-			  userService.register(user);
-		
-			return new ModelAndView("redirect:login");
-			  }
+	public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("user") User user) {
+
+		userService.register(user);
+		HttpSession session = request.getSession(true);
+
+		session.setAttribute("message", "session created");
+		return new ModelAndView("redirect:login");
+	}
 
 }

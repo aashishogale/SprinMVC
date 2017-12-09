@@ -2,6 +2,7 @@ package com.bridgelabz.model;
 
 /**
  * @author aashish
+ * User model for storing user information
  *
  */
 public class User {

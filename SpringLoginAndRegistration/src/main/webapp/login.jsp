@@ -28,7 +28,7 @@
 		
 			
 							<td>
-				<a href="register"><input type="button" value="Sign in"></a>
+				<a href="register"><input type="button" value="register"></a>
 				</td>
 	</tr>
 		</table>
