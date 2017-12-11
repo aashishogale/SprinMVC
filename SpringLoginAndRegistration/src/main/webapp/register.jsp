@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,39 +13,39 @@
 
 
 
-<link type="text/css" rel="stylesheet"
-href="css/register2.css" />
-
+<link type="text/css" rel="stylesheet" href="css/register2.css" />
+<script type="text/javascript" src="js/login.js"></script>
 
 
 </head>
 
-<body >
-	<form:form id="regForm" modelAttribute="user" action="registerProcess" method="post">
-		<img  alt="google" class="google"> 
-		<a href="login"><input
-			type="button" value="Sign in"></a>
+<body>
+	<form:form id="regForm" modelAttribute="user" action="registerProcess"
+		method="post" onsubmit="return checkvalid()">
+		<img alt="google" class="google">
+		<a href="login"><input type="button" value="Sign in"></a>
 		<div class="box">
 			<p class="title">Create your Google Account
 			<p>
 			<div class="container">
 				<div class="name">
 					<p class="heading">Name</p>
-					<form:input type="text" placeholder="First" id="fname" name="fname" path="fname"/>
-					<form:input type="text" placeholder="Last" id="lname" path="lname"/>
+					<form:input type="text" placeholder="First" id="fname" name="fname"
+						path="fname" />
+					<form:input type="text" placeholder="Last" id="lname" path="lname" />
 					<p id="pname"></p>
 
 				</div>
 				<div class="email">
 					<p class="heading">Choose your username</p>
-					<form:input type="email" id="email" name="email" path="email"/> <span
-						class="atgmail">@gmail.com</span>
+					<form:input type="email" id="email" name="email" path="email" />
+					<span class="atgmail">@gmail.com</span>
 					<p id="pemail"></p>
 				</div>
 
 				<div>
 					<p class="heading">Create a password</p>
-					<form:input type="password" id="psw" name="pass" path="password"/>
+					<form:input type="password" id="psw" name="pass" path="password" />
 					<p id="ppass"></p>
 				</div>
 				<div>
@@ -55,7 +55,7 @@ href="css/register2.css" />
 				</div>
 				<div>
 					<p class="heading">Birthday</p>
-					<input type="date" placeholder="day" class="day" id="day" >
+					<input type="date" placeholder="day" class="day" id="day">
 					<p id="pday"></p>
 
 				</div>
@@ -80,7 +80,7 @@ href="css/register2.css" />
 				<div Class="space">
 					<p class="heading">Location</p>
 					<form:select name="location" path="location">
-						<option value=""></option>
+
 						<option value="India">India</option>
 						<option value="China">China</option>
 						<option value="Australia">Australia</option>
@@ -95,7 +95,7 @@ href="css/register2.css" />
 				</div>
 			</div>
 		</div>
-	  </form:form>
+	</form:form>
 
 </body>
 </html>

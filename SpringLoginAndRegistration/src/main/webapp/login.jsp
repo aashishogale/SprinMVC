@@ -24,13 +24,7 @@
 				<td></td>
 				<td align="left"><form:button id="login" name="login">Login</form:button>
 				</td>
-
-		
-			
-							<td>
-				<a href="register"><input type="button" value="register"></a>
-				</td>
-	</tr>
+			</tr>
 		</table>
 
 	</form:form>
@@ -39,6 +33,7 @@
 			<td style="font-style: italic; color: red;">${message}</td>
 		</tr>
 	</table>
+	<a href="/"><input type="button" value="register"></a>
 
 </body>
 </html>

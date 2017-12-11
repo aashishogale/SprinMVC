@@ -11,8 +11,9 @@
 	<%
 		session.invalidate();
 	%>
-	<h1>Welcome ${name}</h1>
+	<h1>Welcome ${user.fname}</h1>
 	<h1>count</h1>
 	<h2>"${count}"</h2>
+
 </body>
 </html>

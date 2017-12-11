@@ -12,35 +12,32 @@ import javax.servlet.http.HttpSessionListener;
 @WebListener
 public class Sessioncounter implements HttpSessionListener {
 
-    /**
-     * Default constructor. 
-     */
 	ServletContext sContext = null;
 	private static int count;
+
+	public Sessioncounter() {
+	}
+
 	public static int getActiveSessions() {
 		return count;
 	}
-    public Sessioncounter() {
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-     * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
-     */
-    public void sessionCreated(HttpSessionEvent se)  { 
-     	count++;
-    	System.out.println("session created");
-    
+	 * @see HttpSessionListener#sessionCreated(HttpSessionEvent)
+	 */
+	public void sessionCreated(HttpSessionEvent se) {
+		count++;
+		System.out.println("session created");
+
 		sContext = se.getSession().getServletContext();
 		sContext.setAttribute("count", new Integer(count));
-         // TODO Auto-generated method stub
-    }
+
+	}
 
 	/**
-     * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
-     */
-    public void sessionDestroyed(HttpSessionEvent se)  { 
-         // TODO Auto-generated method stub
-    }
-	
+	 * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
+	 */
+	public void sessionDestroyed(HttpSessionEvent se) {
+	}
+
 }

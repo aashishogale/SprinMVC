@@ -9,7 +9,7 @@ import com.bridgelabz.model.User;
  */
 
 public interface UserService {
-	
+
 	/**
 	 * @param user
 	 * @purpose register the user
