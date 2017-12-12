@@ -3,9 +3,12 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!-- < html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+ -->
+ <!DOCTYPE html>
+ <html>
 <head>
+
 
 
 <title>Create your Google Account</title>
@@ -32,7 +35,7 @@
 					<p class="heading">Name</p>
 					<form:input type="text" placeholder="First" id="fname" name="fname"
 						path="fname" />
-					<form:input type="text" placeholder="Last" id="lname" path="lname" />
+					<form:input type="text" placeholder="Last" id="lname" path="lname" maxlength="50"/>
 					<p id="pname"></p>
 
 				</div>
@@ -55,7 +58,7 @@
 				</div>
 				<div>
 					<p class="heading">Birthday</p>
-					<input type="date" placeholder="day" class="day" id="day">
+					<input type="date" class="day" id="day">
 					<p id="pday"></p>
 
 				</div>

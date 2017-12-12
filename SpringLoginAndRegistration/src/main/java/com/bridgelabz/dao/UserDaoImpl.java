@@ -13,10 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.bridgelabz.controller.LoginController;
 import com.bridgelabz.model.Login;
+import com.bridgelabz.model.Otp;
 import com.bridgelabz.model.User;
 
 /**
@@ -36,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 	@Autowired
 	BCryptPasswordEncoder encryptor;
 
-	public void register(User user) {
+	public boolean register(User user) {
 		String sql = "insert into register1(name,password,lastname,email,location) values(?,?,?,?,?)";
 
 		String password = encryptor.encode(user.getPassword());
@@ -44,11 +43,14 @@ public class UserDaoImpl implements UserDao {
 				new Object[] { user.getFname(), password, user.getLname(), user.getEmail(), user.getLocation() });
 		if (a == 0) {
 			logger.warn("registration unsuccesful");
+			return false;
 
 		} else {
 			logger.info("registration successful");
+			return true;
 		}
 	}
+	
 
 	public User validateUser(Login login) {
 
@@ -61,6 +63,32 @@ public class UserDaoImpl implements UserDao {
 					&& encryptor.matches(login.getPassword(), user.getPassword())) {
 				return user;
 			}
+
+		}
+		logger.warn("user not present");
+		return null;
+	}
+
+
+
+	public void generateOtp(Otp otp,int randomNo) {
+		String sql = "insert into otp(email,otp) values(?,?)";
+		jdbcTemplate.update(sql,
+				new Object[] {otp.getEmail(),randomNo});
+		
+
+		}
+	public Otp validateUser(String email,int otp) {
+
+		String sql = "select * from otp";
+		List<Otp> otps = jdbcTemplate.query(sql, new OtpMapper());
+		Iterator<Otp> itr = otps.iterator();
+		while (itr.hasNext()) {
+			Otp otplist = itr.next();
+			if(otplist.getEmail().equals(email)&&otplist.getOtp()==otp) {
+				return otplist;
+			}
+		
 
 		}
 		logger.warn("user not present");
@@ -81,5 +109,19 @@ class UserMapper implements RowMapper<User> {
 
 		return user;
 	}
+}
+	
+	
+	class OtpMapper implements RowMapper<Otp> {
+		public Otp mapRow(ResultSet rs, int arg1) throws SQLException {
+		Otp otp=new Otp();
+
+		
+			otp.setEmail(rs.getString("email"));
+			otp.setOtp(rs.getInt("otp"));
+
+			return otp;
+		}
+
 
 }

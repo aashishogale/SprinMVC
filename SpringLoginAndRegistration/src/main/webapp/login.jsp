@@ -34,6 +34,6 @@
 		</tr>
 	</table>
 	<a href="/"><input type="button" value="register"></a>
-
+<a href="/otp"><input type="button" value="forgot password"></a>
 </body>
 </html>

@@ -1,6 +1,9 @@
 package com.bridgelabz.service;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.bridgelabz.model.Login;
+import com.bridgelabz.model.Otp;
 import com.bridgelabz.model.User;
 
 /**
@@ -15,12 +18,14 @@ public interface UserService {
 	 * @purpose register the user
 	 * 
 	 */
-	public void register(User user);
+	public boolean register(User user, HttpServletRequest request);
 
 	/**
 	 * @param login
 	 * @return user-validated user
 	 */
 	public User validateUser(Login login);
+
+	public void generateOtp(Otp otp);
 
 }

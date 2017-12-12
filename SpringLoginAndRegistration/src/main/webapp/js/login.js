@@ -9,8 +9,8 @@ function checkvalid() {
 	}
 
 	if (document.getElementById("fname").value.length < 4
-			|| document.getElementById("fname").value.length > 20) {
-		document.getElementById("pname").innerHTML="pls enter correct value";
+			|| document.getElementById("fname").value.length > 60) {
+		document.getElementById("pname").innerHTML="pls enter correct first value";
 		//alert("pls enter correct number of characterfor first name");
 		return false;
 	}
@@ -22,14 +22,14 @@ function checkvalid() {
 	}
 
 	if (document.getElementById("lname").value.length < 4
-			|| document.getElementById("lname").value.length > 20) {
-		document.getElementById("pname").innerHTML="pls enter correct value";
+			|| document.getElementById("lname").value.length > 60) {
+		document.getElementById("pname").innerHTML="pls enter correct last value";
 		//alert("pls enter correct number of character for last name");
 		return false;
 	}
 
 	if (document.getElementById("email").value == "") {
-		document.getElementById("pemail").innerHTML="pls enter correct value";
+		document.getElementById("pemail").innerHTML="pls enter correct email value";
 		//alert("Cannot leave email field blank");
 		return false;
 	}

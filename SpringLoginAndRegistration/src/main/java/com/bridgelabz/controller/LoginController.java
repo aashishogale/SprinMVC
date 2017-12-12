@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.bridgelabz.model.Login;
 import com.bridgelabz.model.User;
 import com.bridgelabz.service.UserService;
@@ -25,7 +24,7 @@ import com.bridgelabz.service.UserService;
 public class LoginController {
 	@Autowired
 	UserService userService;
-	private static final Logger logger = Logger.getLogger(LoginController.class);	
+	private static final Logger logger = Logger.getLogger(LoginController.class);
 
 	/**
 	 * @param request
@@ -51,15 +50,13 @@ public class LoginController {
 		ModelAndView mav = null;
 		User user = userService.validateUser(login);
 		if (null != user) {
-			HttpSession session= request.getSession();
+			HttpSession session = request.getSession();
 			session.setAttribute("user", user);
-			
+
 			return new ModelAndView("redirect:/welcome");
 		} else {
-			
-				logger.warn("login unscuccesful user not found");
-			
-				
+
+			logger.warn("login unsuccesful user not found");
 			mav = new ModelAndView("login");
 			mav.addObject("message", "Username or Password is wrong!!");
 		}
@@ -68,7 +65,7 @@ public class LoginController {
 
 	@RequestMapping(value = "/register")
 	public ModelAndView showregister(HttpServletRequest request, HttpServletResponse response) {
-        
+
 		return new ModelAndView("redirect:/");
 	}
 
