@@ -3,7 +3,6 @@ package com.bridgelabz.service;
 import javax.servlet.http.HttpServletRequest;
 
 import com.bridgelabz.model.Login;
-import com.bridgelabz.model.Otp;
 import com.bridgelabz.model.User;
 
 /**
@@ -26,6 +25,12 @@ public interface UserService {
 	 */
 	public User validateUser(Login login);
 
-	public void generateOtp(Otp otp);
+	public void generateOtp(String email);
+
+	public boolean validateOtp(String email, int otp);
+
+	public void changePassword(String email, String password);
+
+	public boolean checkEmail(String email);
 
 }

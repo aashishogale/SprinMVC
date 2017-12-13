@@ -33,7 +33,7 @@
 			<td style="font-style: italic; color: red;">${message}</td>
 		</tr>
 	</table>
-	<a href="/"><input type="button" value="register"></a>
-<a href="/otp"><input type="button" value="forgot password"></a>
+	<a href="register"><input type="button" value="register"></a>
+	<a href="otp"><input type="button" value="forgot password"></a>
 </body>
 </html>

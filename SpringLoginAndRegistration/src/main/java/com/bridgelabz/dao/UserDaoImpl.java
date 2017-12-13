@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import com.bridgelabz.model.Login;
-import com.bridgelabz.model.Otp;
 import com.bridgelabz.model.User;
 
 /**
@@ -50,7 +49,6 @@ public class UserDaoImpl implements UserDao {
 			return true;
 		}
 	}
-	
 
 	public User validateUser(Login login) {
 
@@ -69,30 +67,28 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	public boolean checkEmail(String email) {
 
-
-	public void generateOtp(Otp otp,int randomNo) {
-		String sql = "insert into otp(email,otp) values(?,?)";
-		jdbcTemplate.update(sql,
-				new Object[] {otp.getEmail(),randomNo});
-		
-
-		}
-	public Otp validateUser(String email,int otp) {
-
-		String sql = "select * from otp";
-		List<Otp> otps = jdbcTemplate.query(sql, new OtpMapper());
-		Iterator<Otp> itr = otps.iterator();
+		String sql = "select * from register1";
+		List<User> users = jdbcTemplate.query(sql, new UserMapper());
+		Iterator<User> itr = users.iterator();
 		while (itr.hasNext()) {
-			Otp otplist = itr.next();
-			if(otplist.getEmail().equals(email)&&otplist.getOtp()==otp) {
-				return otplist;
+			User user = itr.next();
+			if (user.getEmail().equals(email)) {
+				return true;
 			}
-		
 
 		}
 		logger.warn("user not present");
-		return null;
+		return false;
+	}
+
+	public void changePassword(String email, String password) {
+		String enpassword = encryptor.encode(password);
+
+		String sql = "update register1 set password='" + enpassword + "' where email='" + email + "'";
+		jdbcTemplate.update(sql);
+
 	}
 
 }
@@ -109,19 +105,4 @@ class UserMapper implements RowMapper<User> {
 
 		return user;
 	}
-}
-	
-	
-	class OtpMapper implements RowMapper<Otp> {
-		public Otp mapRow(ResultSet rs, int arg1) throws SQLException {
-		Otp otp=new Otp();
-
-		
-			otp.setEmail(rs.getString("email"));
-			otp.setOtp(rs.getInt("otp"));
-
-			return otp;
-		}
-
-
 }

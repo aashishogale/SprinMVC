@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +24,7 @@ import com.bridgelabz.service.UserService;
 public class RegisterController {
 	@Autowired
 	public UserService userService;
-	@Autowired
-	private MailSender mailSender;
+
 	private static final Logger logger = Logger.getLogger(RegisterController.class);
 
 	/**

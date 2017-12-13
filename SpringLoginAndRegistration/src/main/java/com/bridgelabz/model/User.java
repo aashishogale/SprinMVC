@@ -1,14 +1,25 @@
 package com.bridgelabz.model;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * @author aashish User model for storing user information
  *
  */
 public class User {
+	@NotNull
 	private String fname;
+	@NotNull
 	private String lname;
+	@Email
 	private String email;
+	@NotNull
+	@Size(min = 8)
 	private String password;
+	@NotNull
+
 	private String location;
 
 	public String getFname() {

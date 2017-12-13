@@ -17,8 +17,8 @@
 
 
 <link type="text/css" rel="stylesheet" href="css/register2.css" />
-<script type="text/javascript" src="js/login.js"></script>
-
+<!-- <script type="text/javascript" src="js/login.js"></script>
+ -->
 
 </head>
 

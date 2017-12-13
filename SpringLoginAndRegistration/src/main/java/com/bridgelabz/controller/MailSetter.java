@@ -3,7 +3,6 @@ package com.bridgelabz.controller;
 import org.springframework.mail.MailSender;
 import org.springframework.mail.SimpleMailMessage;
 
-
 public class MailSetter {
 
 	private MailSender mailSender;
@@ -20,6 +19,17 @@ public class MailSetter {
 		message.setTo(to);
 		message.setSubject("welcome mail");
 		message.setText("you have been verified");
+		mailSender.send(message);
+	}
+
+	public void sendOtp(String to, int otp) {
+
+		SimpleMailMessage message = new SimpleMailMessage();
+
+		message.setFrom("website");
+		message.setTo(to);
+		message.setSubject("Your otp");
+		message.setText(Integer.toString(otp));
 		mailSender.send(message);
 	}
 

@@ -69,4 +69,54 @@ public class LoginController {
 		return new ModelAndView("redirect:/");
 	}
 
+	@RequestMapping(value = "/otp")
+	public ModelAndView showOtp(HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("otppage12");
+
+		System.out.println("method called");
+		return mav;
+	}
+
+	@RequestMapping(value = "/generateOtp", method = RequestMethod.POST)
+	public ModelAndView generateOtp(HttpServletRequest request, HttpServletResponse response) {
+		HttpSession session = request.getSession();
+		session.setAttribute("email", request.getParameter("email"));
+		if (userService.checkEmail(request.getParameter("email"))) {
+			userService.generateOtp(request.getParameter("email"));
+			return new ModelAndView("otpval");
+
+		}
+		ModelAndView mav = new ModelAndView("otppage12");
+		mav.addObject("message", "please enter correct email");
+		return mav;
+
+	}
+
+	@RequestMapping(value = "/validateOtp", method = RequestMethod.POST)
+	public ModelAndView validateOtp(HttpServletRequest request, HttpServletResponse response) {
+		int otp = Integer.parseInt(request.getParameter("otp"));
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
+		if (userService.validateOtp(email, otp)) {
+			return new ModelAndView("changepassword");
+
+		}
+		ModelAndView mav = new ModelAndView("otpval");
+		mav.addObject("message", "please enter correct otp");
+		return mav;
+	}
+
+	@RequestMapping(value = "/changepasswordprocess", method = RequestMethod.POST)
+	public ModelAndView changePassword(HttpServletRequest request, HttpServletResponse response) {
+		String password = request.getParameter("password");
+		HttpSession session = request.getSession();
+		String email = (String) session.getAttribute("email");
+
+		userService.changePassword(email, password);
+		ModelAndView mav = new ModelAndView("login");
+		mav.addObject("login", new Login());
+		mav.addObject("message", "password successfully changed");
+		return mav;
+
+	}
 }
